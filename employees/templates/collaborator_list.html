@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Collaborators</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for collaborator in collaborators %}
+        <tr>
+          <td>{{ collaborator.name }}</td>
+          <td>{{ collaborator.email }}</td>
+          <td>{{ collaborator.department.name }}</td>
+          <td>
+            <a href="{% url 'collaborator_remove' collaborator.pk %}">Remove</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <form action="{% url 'collaborator_add' %}" method="get">
+    {% csrf_token %}
+    <button type="submit">Add Collaborator</button>
+  </form>
+{% endblock %}

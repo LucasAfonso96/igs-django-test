@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>My App</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="container">
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'department_list' %}">List Departments</a></li>
+                <li><a href="{% url 'department_add' %}">Add Department</a></li>
+                <li><a href="{% url 'collaborator_list' %}">List Collaborators</a></li>
+                <li><a href="{% url 'collaborator_add' %}">Add Collaborator</a></li>
+                
+            </ul>
+        </nav>
+     
+        {% block content %}
+        <h1>Welcome to my app!</h1>
+        
+        <div id="buttons">
+            <form id="form-left" action="{% url 'department_list' %}" method="get">
+                {% csrf_token %}
+                <button type="submit">List all Departments</button>
+            </form>
+            
+            <form action="{% url 'department_add' %}" method="get">
+                {% csrf_token %}
+                <button type="submit">Add Department</button>
+            </form>
+
+            <form id="form-left" action="{% url 'collaborator_list' %}" method="get">
+                {% csrf_token %}
+                <button type="submit">List all Collaborators</button>
+            </form>
+            
+            <form action="{% url 'collaborator_add' %}" method="get">
+                {% csrf_token %}
+                <button type="submit">Add Collaborator</button>
+            </form>
+        </div>
+        
+      
+        {% endblock %}
+    </div>
+</body>
+</html>

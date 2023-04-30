@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Departments</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for department in departments %}
+        <tr>
+          <td>{{ department.name }}</td>
+          <td>
+            <a href="{% url 'department_remove' department.pk %}">Remove</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <form action="{% url 'department_add' %}" method="get">
+    {% csrf_token %}
+    <button type="submit">Add Department</button>
+  </form>
+ 
+{% endblock %}
